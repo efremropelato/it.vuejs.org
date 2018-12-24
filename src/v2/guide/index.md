@@ -35,7 +35,7 @@ Al centro di Vue.js c'è un sistema che permette al DOM di mostrare i dati in mo
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Ciao Vue!'
   }
 })
 ```
@@ -47,7 +47,7 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'Ciao Vue!'
   }
 })
 </script>
@@ -60,8 +60,8 @@ Oltre all'interpolazione del testo, possiamo anche associare attributi così:
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    Rimani con il mouse sopra al testo per alcuni secondi
+e vedrai apparire dinamicamente il titolo!
   </span>
 </div>
 ```
@@ -69,37 +69,39 @@ Oltre all'interpolazione del testo, possiamo anche associare attributi così:
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Hai caricato questa pagina ' + new Date().toLocaleString()
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    Rimani con il mouse sopra al testo per alcuni secondi e vedrai apparire dinamicamente il titolo!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'Hai caricato questa pagina il ' + new Date().toLocaleString()
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+<!-- TODO: rileggere -->
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+Qui stiamo incontrando qualcosa di nuovo. L'attributo `v-bind` che vedi è chiamato ** direttiva **. Le direttive hanno come prefisso `v-` per indicare che sono attributi speciali forniti da Vue e, come si può intuire, applicano un comportamento reattivo speciale al DOM renderizzato. Qui, in pratica, si dice "mantieni aggiornato l'attributo` title` di questo elemento con la proprietà `message` sull'istanza Vue."
 
-## Conditionals and Loops
+Se apri nuovamente la tua console JavaScript e inserisci `app2.message = 'qualche nuovo messaggio'`, vedrai ancora una volta che l'HTML associato, in questo caso l'attributo` title`, è stato aggiornato.
 
-It's easy to toggle the presence of an element, too:
+## Condizioni e Cicli
+
+È anche possibile attivare o disattivare la presenza di un elemento:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Ora mi vedi</span>
 </div>
 ```
 
@@ -114,7 +116,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Ora mi vedi</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -126,11 +128,12 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Apri la console ed esegui `app3.seen = false`. Dovresti veder scomparire il messaggio.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+<!-- TODO: rileggere -->
+Questo esempio dimostra che possiamo associare dati non solo a testo e attributi, ma anche alla ** struttura ** del DOM. Inoltre, Vue fornisce anche un potente sistema di effetti di transizione che può applicare automaticamente [effetti di transizione] (transitions.html) quando gli elementi vengono inseriti / aggiornati / rimossi da Vue.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Ci sono molte altre direttive, ognuna con le proprie funzionalità speciali. Ad esempio, la direttiva `v-for` può essere utilizzata per visualizzare un elenco di elementi che utilizzano i dati di una matrice:
 
 ``` html
 <div id="app-4">
@@ -146,9 +149,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Studiare JavaScript' },
+      { text: 'Studiare Vue.js' },
+      { text: 'Sviluppare qualcosa di fantastico' }
     ]
   }
 })
@@ -166,32 +169,32 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'Studiare JavaScript' },
+      { text: 'Studiare Vue.js' },
+      { text: 'Sviluppare qualcosa di fantastico' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Eseguire in console `app4.todos.push({ text: 'Nuova attività' })`. Dovresti veder nell'elenco la nuova attività.
 
-## Handling User Input
-
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+## Gestire l'input dell'utente
+<!-- TODO: rileggere -->
+Per consentire agli utenti di interagire con la tua app, possiamo usare la direttiva `v-on` per allegare listener di eventi che invocano metodi sulle nostre istanze di Vue:
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Messaggio inverso</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Ciao Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -203,13 +206,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">Messaggio inverso</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Ciao Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -220,9 +223,10 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+<!-- TODO: rileggere -->
+Nota che in questo metodo aggiorniamo lo stato della nostra app senza toccare il DOM - tutte le manipolazioni del DOM sono gestite da Vue, e il codice che scrivi è focalizzato sulla logica sottostante.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue fornisce anche la direttiva `v-model` che rende l'associazione bidirezionale tra l'input del modulo e lo stato delle app un gioco da ragazzi:
 
 ``` html
 <div id="app-6">
@@ -234,7 +238,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Ciao Vue!'
   }
 })
 ```
@@ -247,24 +251,26 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Ciao Vue!'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## Componenti
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+<!-- TODO: rileggere -->
+Il sistema dei componenti è un altro concetto importante in Vue, perché è un'astrazione che ci consente di costruire applicazioni su larga scala composte da componenti piccoli, autosufficienti e spesso riutilizzabili. Se ci pensiamo, quasi ogni tipo di interfaccia di applicazione può essere astratto in un albero di componenti:
 
 ![Component Tree](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+<!-- TODO: rileggere -->
+In Vue, un componente è essenzialmente un'istanza Vue con opzioni predefinite. La registrazione di un componente in Vue è semplice:
 
 ``` js
-// Define a new component called todo-item
+// Definisci un nuovo componente chiamato 'todo-item'
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>Questa è una attività</li>'
 })
 ```
 
