@@ -278,24 +278,22 @@ Now you can compose it in another component's template:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- Crea un'istanza del componente "todo-item" -->
   <todo-item></todo-item>
 </ol>
 ```
-
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+Ma questo renderebbe lo stesso testo per ogni todo, che non è super interessante. Dovremmo essere in grado di trasferire i dati dall'ambito principale in componenti figlio. Modifichiamo la definizione del componente per farlo accettare un [prop](components.html#Props):
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  // Il componente "todo-item" ora ha accesso ai "props",
+  // che è come un attributo personalizzato: esempio "todo".
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+Ora possiamo passare il todo in ogni componente istanziato, usando `v-bind`:
 
 ``` html
 <div id="app-7">
